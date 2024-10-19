@@ -4,12 +4,16 @@ pipeline {
             label 'maven'
         }
     }
-
+environment {
+    PATH = "/usr/bin:$PATH"
+}
     stages {
-        stage('Clone Code') {
+        stage("build") {
             steps {
-                git branch: 'main', credentialsId: '1d4ded06-e47c-45a6-aae1-165eca7bfdec', url: 'https://github.com/moamjad0794/tweet-trend-new'
+                sh 'mvn clean deploy'
             }
+        }
+
         }
     }
 }
